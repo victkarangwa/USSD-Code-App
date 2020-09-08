@@ -20,7 +20,7 @@ module.exports = (menu) => {
   });
 
   menu.state("dashboard.sendMoney.receiver", {
-    run: async() => {
+    run: async () => {
       const {
         val,
         args: { phoneNumber },
@@ -28,7 +28,7 @@ module.exports = (menu) => {
       sessions["amount"] = val;
       const user = await UserService.findUserByPhone(phoneNumber.slice(3));
 
-      const enteredAmount = JSON.parse(val)
+      const enteredAmount = JSON.parse(val);
       console.log(enteredAmount, user.amount);
       if (val > user.amount) {
         menu.end("Sorry, you don't have sufficient amount to send!");
@@ -45,19 +45,27 @@ module.exports = (menu) => {
 
   menu.state("dashboard.sendMoney.send", {
     run: async () => {
-      const { val: receiver, args: {phoneNumber} } = menu;
-      const user =await UserService.findUserByPhone(receiver);
-      const balance = user.amount - sessions.amount;
-      
-      await UserService.update(balance,phoneNumber.slice(3));
+      const {
+        val,
+        args: { phoneNumber },
+      } = menu;
 
-      if(user){
-        menu.end(`You have successfully sent ${sessions.amount} to ${user.firstName} ${user.lastName}. Your new balance is ${balance} RWF`);
+      const sender = await UserService.findUserByPhone(phoneNumber.slice(3));
+      const reciever = await UserService.findUserByPhone(val);
+     
+      if (reciever) {
+        const amountToSend = sessions.amount;
+        const balance = sender.amount - amountToSend;
 
-      }else{
+        const senderPhone = phoneNumber.slice(3);
+        await UserService.updateBalance(balance, senderPhone);
+
+        menu.end(
+          `You have successfully sent RWF ${amountToSend} to ${reciever.firstName} ${reciever.lastName} (${reciever.phone}). Your new balance is RWF ${balance}`
+        );
+      } else {
         menu.end("Invalid receipient");
       }
-
     },
     // next object links to next state based on user input
     next: {

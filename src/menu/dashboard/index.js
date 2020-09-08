@@ -29,7 +29,7 @@ module.exports = menu => {
         '1': 'dashboard.sendMoney',
         '2': 'dashboard.savings',
         '3': 'dashboard.statements',
-        '4': 'dashboard.changePin'
+        '4': 'dashboard.settings'
     }
   });
 

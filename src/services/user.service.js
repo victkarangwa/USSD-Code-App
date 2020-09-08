@@ -17,10 +17,22 @@ class UserServices {
 
 
 
-  static async update(amount, phone) {
+  static async updateBalance(amount, phone) {
     try {
-      const user = await db.user.update(
+      const user = await db.users.update(
        { amount},
+        { where: { phone }}
+      );
+      return user;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  static async changePin(pin, phone) {
+    try {
+      const user = await db.users.update(
+       { pin},
         { where: { phone }}
       );
       return user;
