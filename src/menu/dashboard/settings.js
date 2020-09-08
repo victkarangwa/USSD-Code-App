@@ -10,7 +10,7 @@ module.exports = (menu) => {
   // Define menu states
   menu.state("dashboard.settings", {
     run: async () => {
-      menu.con(`Enter your 4-digit new pin`);
+      menu.con(`Enter your 4-digit new PIN`);
     },
     // next object links to next state based on user input
     next: {
@@ -40,9 +40,9 @@ module.exports = (menu) => {
       } = menu;
       if (session.newPin === val) {
         await UserService.changePin(session.newPin, phoneNumber.slice(3));
-        menu.end(`You have successfully changed your pin! `);
+        menu.end(`You have successfully changed your PIN! `);
       } else {
-        menu.end(`Your new pin don't match`);
+        menu.end(`Your new PIN don't match`);
       }
     },
   });

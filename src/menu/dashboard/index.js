@@ -9,7 +9,7 @@ const statement = require('./statement');
 
 
 
-const dashboardInstructions = `Choose a service to proceed: \n1. Send Money \n2. Check savings \n3. View Mini-statement \n4. Change Pin`;
+const dashboardInstructions = `Choose a service to proceed: \n1. Send Money \n2. Check savings \n3. View Mini-statement \n4. Change PIN`;
 
 module.exports = menu => {
   // Define menu states
@@ -28,7 +28,7 @@ module.exports = menu => {
     next: {
         '1': 'dashboard.sendMoney',
         '2': 'dashboard.savings',
-        '3': 'dashboard.statements',
+        '3': 'dashboard.statement',
         '4': 'dashboard.settings'
     }
   });

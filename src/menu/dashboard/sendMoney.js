@@ -58,7 +58,9 @@ module.exports = (menu) => {
         const balance = sender.amount - amountToSend;
 
         const senderPhone = phoneNumber.slice(3);
+        const receiverPhone = reciever.phone;
         await UserService.updateBalance(balance, senderPhone);
+        await UserService.updateBalance(amountToSend + reciever.amount, receiverPhone);
 
         menu.end(
           `You have successfully sent RWF ${amountToSend} to ${reciever.firstName} ${reciever.lastName} (${reciever.phone}). Your new balance is RWF ${balance}`
