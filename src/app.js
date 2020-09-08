@@ -1,13 +1,14 @@
-const express = require("express");
-const ussdRoute = require("./index");
-const bodyParser = require("body-parser");
+const express = require('express');
 
+const routes = require('./routes');
+
+const { PORT } = process.env
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => console.log(`running on localhost:${PORT}`));
+app.use('/', routes(app));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+const port = PORT || 3000
 
-app.use("/", ussdRoute);
+app.listen(port, () => {
+	console.log(`USSD successfully started at 127.0.0.1:${port}`);
+});

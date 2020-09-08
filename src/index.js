@@ -4,13 +4,20 @@ const router = express.Router();
 const UssdMenu = require('ussd-menu-builder');
 let menu = new UssdMenu();
 
+
 // Define menu states
 menu.startState({
     run: () => {
         // use menu.con() to send response without terminating session      
-        menu.con('Welcome. Choose option:' +
-            '\n1. Show Balance' +
-            '\n2. Buy Airtime');
+        menu.con('Welcome to MTN MoMo Clone:' 
+            + '\n1. Send Money' 
+            + '\n2. Buy'
+            + '\n3. Pay Bill'
+            + '\n4. Bank Services'
+            + '\n5. Mokash'
+            + '\n6. My MoMo Account'
+
+            );
     },
     // next object links to next state based on user input
     next: {
