@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/app.js",
     "start:dev": "nodemon src/app.js",
     "db:migrate": "sequelize db:migrate",
     "db:seed": "npx sequelize-cli db:seed:undo:all &&  sequelize db:seed:all"
