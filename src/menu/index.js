@@ -14,7 +14,7 @@ const index = () => {
 
       const { phoneNumber } = menu.args;
 
-      const user = await UserService.findUserByPhone(phoneNumber.slice(3));
+      const user = await UserService.findUserByPhone(phoneNumber);
 
       if (user) {
         menu.con(

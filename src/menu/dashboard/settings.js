@@ -39,7 +39,7 @@ module.exports = (menu) => {
         args: { phoneNumber },
       } = menu;
       if (session.newPin === val) {
-        await UserService.changePin(session.newPin, phoneNumber.slice(3));
+        await UserService.changePin(session.newPin, phoneNumber);
         menu.end(`You have successfully changed your PIN! `);
       } else {
         menu.end(`Your new PIN don't match`);

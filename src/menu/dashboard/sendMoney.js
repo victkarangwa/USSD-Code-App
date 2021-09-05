@@ -26,7 +26,7 @@ module.exports = (menu) => {
         args: { phoneNumber },
       } = menu;
       sessions["amount"] = val;
-      const user = await UserService.findUserByPhone(phoneNumber.slice(3));
+      const user = await UserService.findUserByPhone(phoneNumber);
 
       const enteredAmount = JSON.parse(val);
       console.log(enteredAmount, user.amount);
@@ -50,14 +50,14 @@ module.exports = (menu) => {
         args: { phoneNumber },
       } = menu;
 
-      const sender = await UserService.findUserByPhone(phoneNumber.slice(3));
+      const sender = await UserService.findUserByPhone(phoneNumber);
       const reciever = await UserService.findUserByPhone(val);
      
       if (reciever) {
         const amountToSend = sessions.amount;
         const balance = sender.amount - amountToSend;
 
-        const senderPhone = phoneNumber.slice(3);
+        const senderPhone = phoneNumber;
         const receiverPhone = reciever.phone;
         await UserService.updateBalance(balance, senderPhone);
         await UserService.updateBalance(amountToSend + reciever.amount, receiverPhone);

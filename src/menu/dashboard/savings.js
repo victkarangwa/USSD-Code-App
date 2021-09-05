@@ -11,7 +11,7 @@ module.exports = menu => {
 
       const { phoneNumber } = menu.args;
 
-      const user = await UserService.findUserByPhone(phoneNumber.slice(3));
+      const user = await UserService.findUserByPhone(phoneNumber);
 
       menu.con(`You have so far saved ${user.amount} RWF \n 0. Dashboard`);
     },
