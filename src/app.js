@@ -7,6 +7,14 @@ const app = express();
 
 app.use('/', routes(app));
 
+// app.get('/',(req, res)=>{
+// 	res.status(200).json({
+// 		status: "success",
+// 		message: "USSD app demo"
+// 	})
+// })
+
+
 const port = PORT || 3000
 
 app.listen(port, () => {
